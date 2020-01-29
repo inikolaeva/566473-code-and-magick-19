@@ -20,7 +20,7 @@ var MY_COLUMN_COLOR = 'rgba(255, 0, 0, 1)';
 var MY_NAME = 'Вы';
 var DEFAULT_COLOR = 'black';
 
-var getMaxElement = function (arr) {
+function getMaxElement(arr) {
   var maxElement = arr[0];
 
   for (var i = 0; i < arr.length; i++) {
@@ -30,13 +30,13 @@ var getMaxElement = function (arr) {
   }
 
   return maxElement;
-};
+}
 
 function getRandomSaturation() {
   return Math.random() * 100;
 }
 
-function renderStatistics(ctx, names, times) {
+window.renderStatistics = function (ctx, names, times) {
   ctx.fillStyle = SHADOW_COLOR;
   ctx.fillRect(CLOUD_X + SHADOW_SIZE, CLOUD_Y + SHADOW_SIZE, CLOUD_WIDTH, CLOUD_HEIGHT);
 
@@ -68,4 +68,4 @@ function renderStatistics(ctx, names, times) {
     ctx.fillRect(columnX, columnY, COLUMN_WIDTH, columnHeight);
   }
 
-}
+};
