@@ -52,24 +52,20 @@ var drawSuccsessWindowTitle = function (ctx) {
   ctx.fillText('Список результатов: ', CLOUD_X + CLOUD_LEFT_PADDING, CLOUD_Y + SUCCESS_MESSAGE_BLOCK_TOP_PADDING + SUCCESS_MESSAGE_LINE_SPACING);
 };
 
-var drawChartColumn = function (ctx, name, columnX, columnY, columnHeight) {
-  ctx.fillStyle = getColorByName(name);
-  ctx.fillRect(columnX, columnY, COLUMN_WIDTH, columnHeight);
-};
-
 var drawChartColumnLegend = function (ctx, name, time, columnX, nameY, timeY) {
   ctx.fillStyle = DEFAULT_COLOR;
   ctx.fillText(Math.round(time), columnX, timeY);
   ctx.fillText(name, columnX, nameY);
 };
 
+var drawRectangle = function (ctx, x, y, width, height, color) {
+  ctx.fillStyle = color;
+  ctx.fillRect(x, y, width, height);
+};
+
 window.renderStatistics = function (ctx, names, times) {
-  ctx.fillStyle = SHADOW_COLOR;
-  ctx.fillRect(CLOUD_X + SHADOW_SIZE, CLOUD_Y + SHADOW_SIZE, CLOUD_WIDTH, CLOUD_HEIGHT);
-
-  ctx.fillStyle = CLOUD_COLOR;
-  ctx.fillRect(CLOUD_X, CLOUD_Y, CLOUD_WIDTH, CLOUD_HEIGHT);
-
+  drawRectangle(ctx, CLOUD_X + SHADOW_SIZE, CLOUD_Y + SHADOW_SIZE, CLOUD_WIDTH, CLOUD_HEIGHT, SHADOW_COLOR);
+  drawRectangle(ctx, CLOUD_X, CLOUD_Y, CLOUD_WIDTH, CLOUD_HEIGHT, CLOUD_COLOR);
   drawSuccsessWindowTitle(ctx);
 
   var maxTime = getMaxElement(times);
@@ -83,7 +79,7 @@ window.renderStatistics = function (ctx, names, times) {
     var nameY = COLUMN_START_Y + COLUMN_NAME_TOP_PADDING;
 
     drawChartColumnLegend(ctx, names[i], times[i], columnX, nameY, timeY);
-    drawChartColumn(ctx, names[i], columnX, columnY, columnHeight);
+    drawRectangle(ctx, columnX, columnY, COLUMN_WIDTH, columnHeight, getColorByName(names[i]));
   }
 
 };
