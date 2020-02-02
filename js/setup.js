@@ -20,11 +20,11 @@ var getRandomValueFromArray = function (arr) {
 };
 
 var generateWizard = function () {
-  var obj = {};
-  obj.name = getRandomValueFromArray(WIZARD_NAMES) + ' ' + getRandomValueFromArray(WIZARD_SURNAME);
-  obj.coatColor = getRandomValueFromArray(COAT_COLOR);
-  obj.eyesColor = getRandomValueFromArray(EYES_COLOR);
-  return obj;
+  return {
+    name: getRandomValueFromArray(WIZARD_NAMES) + ' ' + getRandomValueFromArray(WIZARD_SURNAME),
+    coatColor: getRandomValueFromArray(COAT_COLOR),
+    eyesColor: getRandomValueFromArray(EYES_COLOR)
+  };
 };
 
 var renderWizard = function (wizard) {
